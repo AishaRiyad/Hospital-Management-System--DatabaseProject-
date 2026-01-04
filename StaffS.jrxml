@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StaffS" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
+	<property name="template.type" value="columnar"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[aG9zcGl0YWwuZGVwYXJ0bWVudCBBUyAsMTU2LDgxLDc5Y2VkOTNlLWM0OTMtNGE1ZS05OGEwLTcz
+OTBmZjk2YmYxZTtob3NwaXRhbC5zdGFmZiBBUyAsMTUsMTUsNjAyNmFhMWItZTMyZi00ZWY3LTk4
+NDMtOTYwMzZiMWVmNjMyOw==]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT sum(salary)  AS Total_salaries,
+	count(essnstaff)  AS Total_number_of_Staff,
+	hospital.department.departmentname
+FROM hospital.department
+	INNER JOIN hospital.staff ON 
+	 hospital.staff.stafftype = hospital.department.stafftype 
+GROUP BY hospital.department.departmentname]]>
+	</queryString>
+	<field name="total_salaries" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total_salaries"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_salaries"/>
+	</field>
+	<field name="total_number_of_staff" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total_number_of_staff"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_number_of_staff"/>
+	</field>
+	<field name="departmentname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="departmentname"/>
+		<property name="com.jaspersoft.studio.field.label" value="departmentname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="department"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{departmentname}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="31" forecolor="#B89F7D" backcolor="#00CCFF" uuid="d8de62c1-c7b7-4da8-8c69-000abeaa2cc0"/>
+					<box>
+						<pen lineWidth="5.75" lineStyle="Double"/>
+						<topPen lineWidth="6.25" lineStyle="Double" lineColor="#FFFFFF"/>
+						<leftPen lineWidth="6.25" lineStyle="Double" lineColor="#FFFFFF"/>
+						<bottomPen lineWidth="6.25" lineStyle="Double" lineColor="#FFFFFF"/>
+						<rightPen lineWidth="6.25" lineStyle="Double" lineColor="#FFFFFF"/>
+					</box>
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="90" y="1" width="200" height="23" forecolor="#FFFFFF" uuid="25f707ae-9ac7-48d3-b45f-b14ee85fae9a"/>
+						<textElement textAlignment="Center">
+							<font size="20" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{departmentname}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="-10" width="130" height="120" uuid="d47168ce-aae1-4efc-8d24-e15195025a5a"/>
+				<box>
+					<pen lineWidth="5.0" lineStyle="Solid"/>
+					<topPen lineWidth="5.0" lineStyle="Solid" lineColor="#0099FF"/>
+					<leftPen lineWidth="5.0" lineStyle="Solid" lineColor="#0099FF"/>
+					<bottomPen lineWidth="5.0" lineStyle="Solid" lineColor="#0099FF"/>
+					<rightPen lineWidth="5.0" lineStyle="Solid" lineColor="#0099FF"/>
+				</box>
+				<imageExpression><![CDATA["bank.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="150" y="0" width="405" height="80" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double" lineColor="#3F0AFF"/>
+					<topPen lineWidth="6.25" lineStyle="Double" lineColor="#3300FF"/>
+					<leftPen lineWidth="6.25" lineColor="#3300FF"/>
+					<bottomPen lineWidth="6.25" lineColor="#3300FF"/>
+					<rightPen lineWidth="6.25" lineColor="#3300FF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Finantial Mangment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="103" width="217" height="29" uuid="eef58983-008d-4a5b-8e47-97f8d4670c7a"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="97" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="79" height="90" uuid="a0221c49-fb14-4d48-97e4-11333b968c72"/>
+				<box>
+					<pen lineWidth="6.0" lineStyle="Double"/>
+					<topPen lineWidth="6.0" lineColor="#3333FF"/>
+					<leftPen lineWidth="6.0" lineColor="#3333FF"/>
+					<bottomPen lineWidth="6.0" lineColor="#3333FF"/>
+					<rightPen lineWidth="6.0" lineColor="#3333FF"/>
+				</box>
+				<imageExpression><![CDATA["icons8-money.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="2" y="90" width="551" height="1" uuid="5e41185f-9c90-45ca-839b-e28b308c1430"/>
+			</line>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="90" y="10" width="180" height="30" forecolor="#000000" uuid="8e99c97b-1eac-4c4f-9c96-2e58e035840b"/>
+				<box>
+					<pen lineWidth="6.0" lineStyle="Double" lineColor="#9900CC"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[total_salaries]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="11" width="233" height="29" uuid="3bd226fa-2d0f-4145-8425-54cfe1d02dc7"/>
+				<box>
+					<pen lineWidth="6.0" lineStyle="Double" lineColor="#6600FF"/>
+					<topPen lineWidth="6.0" lineStyle="Double" lineColor="#6600FF"/>
+					<leftPen lineWidth="6.0" lineStyle="Double" lineColor="#6600FF"/>
+					<bottomPen lineWidth="6.0" lineStyle="Double" lineColor="#6600FF"/>
+					<rightPen lineWidth="6.0" lineStyle="Double" lineColor="#6600FF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_salaries}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="90" y="50" width="180" height="31" forecolor="#000000" uuid="86b28e27-9925-4d20-a7da-c4e7a843d396"/>
+				<box>
+					<pen lineColor="#6600FF"/>
+					<topPen lineWidth="6.0" lineStyle="Double" lineColor="#0000CC"/>
+					<leftPen lineWidth="6.0" lineStyle="Double" lineColor="#0000CC"/>
+					<bottomPen lineWidth="6.0" lineStyle="Double" lineColor="#0000CC"/>
+					<rightPen lineWidth="6.0" lineStyle="Double" lineColor="#0000CC"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[total_number_of_staff]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="300" y="50" width="233" height="30" uuid="ef3d38cc-aefc-4ac8-b0ca-03f43f56f17a"/>
+				<box>
+					<pen lineWidth="6.0" lineStyle="Double" lineColor="#9900CC"/>
+					<topPen lineWidth="6.0" lineStyle="Double" lineColor="#9900CC"/>
+					<leftPen lineWidth="6.0" lineStyle="Double" lineColor="#9900CC"/>
+					<bottomPen lineWidth="6.0" lineStyle="Double" lineColor="#9900CC"/>
+					<rightPen lineWidth="6.0" lineStyle="Double" lineColor="#9900CC"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_number_of_staff}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fab082df-3ca0-43ac-900e-4da3f8b5a45d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="bfdca178-800d-445c-9a31-bb616a00e8ce"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="2fba0f87-635e-476d-858f-d102b26146fe"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" mode="Transparent" x="433" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="e454d23d-bcfc-4c79-a399-0ef520a3150a"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="14d8de1e-8695-4078-a67f-0e69172574d5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

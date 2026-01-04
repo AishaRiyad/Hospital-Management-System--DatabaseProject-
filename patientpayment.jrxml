@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="patientpayment" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
+	<property name="template.type" value="columnar"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[aG9zcGl0YWwuaGlzdG9yeSBBUyAsMTUsMTUsYWEyNjE1YTMtMTBlYS00YTE5LTgwYjgtNGY0MDBi
+ZDkzYjlhO2hvc3BpdGFsLnBhdGllbnQgQVMgLDE2MSw0MixmODMyN2Q2NC04NzVmLTQ1OGItOWI0
+OS05ZWIwZmY0NmZiMDc7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT sum(cost)  AS Total_cost,
+	hospital.patient.patientname
+FROM hospital.patient
+	INNER JOIN hospital.history ON 
+	 hospital.history.patientssn = hospital.patient.patientssn 
+GROUP BY hospital.patient.patientname]]>
+	</queryString>
+	<field name="total_cost" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total_cost"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_cost"/>
+	</field>
+	<field name="patientname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="patientname"/>
+		<property name="com.jaspersoft.studio.field.label" value="patientname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patient"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{patientname}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#9DB1B8" uuid="d8de62c1-c7b7-4da8-8c69-000abeaa2cc0"/>
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="0" width="488" height="24" forecolor="#FFFFFF" uuid="25f707ae-9ac7-48d3-b45f-b14ee85fae9a"/>
+						<textElement textAlignment="Center">
+							<font fontName="Broadway" size="20" isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{patientname}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="150" splitType="Stretch">
+			<image>
+				<reportElement x="2" y="0" width="238" height="150" uuid="d47168ce-aae1-4efc-8d24-e15195025a5a"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="8.0" lineStyle="Double" lineColor="#9900CC"/>
+					<leftPen lineWidth="8.0" lineStyle="Double" lineColor="#9900CC"/>
+					<bottomPen lineWidth="8.0" lineStyle="Double" lineColor="#9900CC"/>
+					<rightPen lineWidth="8.0" lineStyle="Double" lineColor="#9900CC"/>
+				</box>
+				<imageExpression><![CDATA["C:/Users/NTC/Desktop/patient.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="250" y="10" width="305" height="93" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+					<topPen lineWidth="9.0" lineColor="#0033FF"/>
+					<leftPen lineWidth="9.0" lineStyle="Dotted" lineColor="#0033FF"/>
+					<bottomPen lineWidth="9.0" lineStyle="Dotted" lineColor="#0033FF"/>
+					<rightPen lineWidth="9.0" lineStyle="Dotted" lineColor="#0033FF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Jokerman" size="60" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ Payment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="103" width="217" height="29" uuid="eef58983-008d-4a5b-8e47-97f8d4670c7a"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="115" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="10" width="79" height="100" uuid="a0221c49-fb14-4d48-97e4-11333b968c72"/>
+				<box>
+					<pen lineStyle="Dotted" lineColor="#0000FF"/>
+					<topPen lineWidth="7.0"/>
+					<leftPen lineWidth="7.0"/>
+					<bottomPen lineWidth="7.0"/>
+					<rightPen lineWidth="7.0"/>
+				</box>
+				<imageExpression><![CDATA["C:/Users/NTC/Desktop/cutecoins.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="4" y="110" width="551" height="1" uuid="5e41185f-9c90-45ca-839b-e28b308c1430"/>
+			</line>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="100" y="27" width="200" height="60" forecolor="#000000" uuid="ada3936a-f97e-47ee-a704-8a5f66749807"/>
+				<box>
+					<pen lineColor="#9900CC"/>
+					<topPen lineWidth="8.0" lineStyle="Double"/>
+					<leftPen lineWidth="8.0" lineStyle="Double"/>
+					<bottomPen lineWidth="8.0" lineStyle="Double"/>
+					<rightPen lineWidth="8.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Snap ITC" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total_cost]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="310" y="27" width="243" height="60" uuid="725b1aa4-0e23-4b10-8505-af874f73feb0"/>
+				<box>
+					<pen lineWidth="1.75"/>
+					<topPen lineWidth="8.0" lineStyle="Double" lineColor="#3300FF"/>
+					<leftPen lineWidth="8.0" lineStyle="Double" lineColor="#3300FF"/>
+					<bottomPen lineWidth="8.0" lineStyle="Double" lineColor="#3300FF"/>
+					<rightPen lineWidth="8.0" lineStyle="Double" lineColor="#3300FF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Snap ITC" size="25" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_cost}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fab082df-3ca0-43ac-900e-4da3f8b5a45d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="bfdca178-800d-445c-9a31-bb616a00e8ce"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="2fba0f87-635e-476d-858f-d102b26146fe"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" mode="Transparent" x="433" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="e454d23d-bcfc-4c79-a399-0ef520a3150a"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="14d8de1e-8695-4078-a67f-0e69172574d5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
